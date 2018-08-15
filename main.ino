@@ -57,10 +57,10 @@ const char *button3Command[] = {
 };
 
 const char *button4Command[] = {
-    //  "/ch/04/mix/on","OFF",         // Button 4 Payload 0: Ch 4 UN-MUTE
-    //  "/ch/04/mix/on","ON"           // Button 4 Payload 1: Ch 4 MUTE
+    //  "/ch/04/mix/on","OFF",       // Button 4 Payload 0: Ch 4 UN-MUTE
+    //  "/ch/04/mix/on","ON"         // Button 4 Payload 1: Ch 4 MUTE
 
-    "/ch/02/mix/09/level", "0",    // Button 4 Payload 0: Ch 2 FX3 send ON
+    "/ch/02/mix/09/level", "0",      // Button 4 Payload 0: Ch 2 FX3 send ON
     "/ch/02/mix/09/level", "-127", // Button 4 Payload 1: Ch 2 FX3 send OFF
 };
 
