@@ -1,10 +1,7 @@
 #ifndef BUTTON_CONTROLLER_H
 #define BUTTON_CONTROLLER_H
 
-#include "Button.h" https://github.com/madleech/Button
-
-class ButtonController {
-public:
+#include "WonderButton.h"
 
   // set of enumerated button values.
   enum Buttons {
@@ -23,14 +20,23 @@ public:
     ActionSize
   };
 
+class ButtonController {
+public:
+
+  // no need to call destructor as instance should be around until program end.
+  // ~ButtonController();
+  
   // Get the instance of the ButtonController singleton.
   ButtonController * GetInstance();
 
+  // Initialise all buttons, returns false if pins aren't set, true otherwise.
+  bool InitialiseButtons();
+
   // Set the pin number of the button denoted by button.
-  SetButtonPin(const Button button, const unsigned int pin);
+  SetButtonPin(const Buttons button, const unsigned int pin);
 
   // Set the Command payload that a button delivers for an action.
-  SetCommandOnAction(const Button button, const Action action, const OSCCommand & oscCommand);
+  SetCommandOnAction(const Buttons button, const Action action, const OSCCommand & oscCommand);
 
   // Have the button controller act on any button actions.
   bool ProcessButtonPresses();
@@ -40,11 +46,7 @@ private:
   ButtonController();
 
   // collection of buttons of ButtonsSize.
-  Button buttons[ButtonsSize];
+  WonderButton m_buttons[ButtonsSize];
 };
 
 #endif
-
-auto bc = ButtonController::GetInstance();
-
-bc.Get(Mic1);

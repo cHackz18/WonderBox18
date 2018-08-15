@@ -4,8 +4,9 @@
   MIT licensed.
 */
 
-#ifndef Button_h
-#define Button_h
+#ifndef BUTTON_H
+#define BUTTON_H
+
 #include "Arduino.h"
 
 class Button
