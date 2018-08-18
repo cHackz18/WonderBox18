@@ -1,19 +1,20 @@
 #ifndef BUTTON_CONTROLLER_H
 #define BUTTON_CONTROLLER_H
 
-#include "WonderButton.h"
+#include "CommandButton.h"
 
-  // set of enumerated button values.
-  enum Buttons {
+  // set of enumerated CommandButton values.
+  // these must stay enumerated 0 to Size.
+  enum CommandButtons {
     Mic1,
     Mic2,
-    Mic3,
-    Mic4,
-    Lock,
-    ButtonsSize
+    CPA,
+    LoKc,
+    CommandButtonsSize
   };
 
   // set of enumerated button actions.
+  // these must stay enumerated 0 to Size.
   enum Action {
     Press,
     Release,
@@ -23,9 +24,9 @@
 class ButtonController {
 public:
 
-  // no need to call destructor as instance should be around until program end.
-  // ~ButtonController();
-  
+  // clean up global button controller on program exit.
+  ~ButtonController();
+
   // Get the instance of the ButtonController singleton.
   ButtonController * GetInstance();
 
@@ -42,11 +43,15 @@ public:
   bool ProcessButtonPresses();
 
 private:
+  bool HandleCommandButtons();
+  bool HandleToggleButtons();
+
+private:
   // default constructor called in GetInstance() once and only once.
   ButtonController();
 
-  // collection of buttons of ButtonsSize.
-  WonderButton m_buttons[ButtonsSize];
+  // collection of CommandButtons of CommandButtonsSize.
+  CommandButton m_commandButtons[CommandButtonsSize];
 };
 
 #endif

@@ -16,14 +16,14 @@ class Button
     // start
     // Author : cHackz18, Project : WonderBox18
     Button();
-    bool set_pin(const uint8_t pin);
+    bool SetPin(const uint8_t pin);
     // end
-    void begin();
-    bool read();
-    bool toggled();
-    bool pressed();
-    bool released();
-    bool has_changed();
+    void Begin();
+    bool Read();
+    bool Toggled();
+    bool Pressed();
+    bool Released();
+    bool HasChanged();
 
 
     const static bool PRESSED = LOW;

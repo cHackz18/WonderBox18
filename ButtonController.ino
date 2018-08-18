@@ -2,12 +2,21 @@
 
 static ButtonController * bController = nullptr;
 
+// clean up global button cleaner on clean up.
+~ButtonController() {
+  delete bController;
+  bController = nullptr;
+}
+
 // default constructor called in GetInstance() once and only once.
 ButtonController::ButtonController() {}
 
 // Initialise all buttons, returns false if pins aren't set, true otherwise.
 bool InitialiseButtons() {
-  // loop through each button and set up
+  // loop through each button and set up their read mode.
+for (auto * button = std::beg(m_buttons); button != std::end(m_buttons); ++button)
+  button->Initialise(Button::Readup)
+
 }
 
 // Get the instance of the ButtonController singleton.
@@ -39,5 +48,15 @@ void ButtonController::SetCommandOnAction(const Buttons button, const Action act
 
 // Have the button controller act on any button actions.
 bool ProcessButtonPresses() {
-  
+  // handle the toggle button first.
+  if (m_toggleButton.Changed())
+    HandleToggleButton();
+
+  // process each command button in m_buttons.
+  for (auto * button = std::beg(m_buttons); button != std::end(m_buttons); ++button)
+    if (button->Changed())
+      if (HandleCommandButton(*button))
+        return false;
+
+  return true;
 }

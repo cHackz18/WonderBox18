@@ -28,7 +28,7 @@ Button::Button()
 {
 }
 
-bool Button::set_pin(const uint8_t pin) {
+bool Button::SetPin(const uint8_t pin) {
 
   // can't change the pin if the button is already initialised and running.
   if (begin_called)
@@ -43,7 +43,11 @@ bool Button::set_pin(const uint8_t pin) {
 }
 // end
 
-void Button::begin()
+enum InputType {
+  Standard,
+  Pullup
+
+void Button::Begin()
 {
   pinMode(_pin, INPUT_PULLUP);
 }
@@ -52,7 +56,7 @@ void Button::begin()
 // public methods
 // 
 
-bool Button::read()
+bool Button::Read()
 {
   // ignore pin changes until after this delay time
   if (_ignore_until > millis())
@@ -72,17 +76,16 @@ bool Button::read()
 }
 
 // has the button been toggled from on -> off, or vice versa
-bool Button::toggled()
+bool Button::Toggled()
 {
-  read();
+  Read();
   return has_changed();
 }
 
 // mostly internal, tells you if a button has changed after calling the read() function
 bool Button::has_changed()
 {
-  if (_has_changed == true)
-  {
+  if (_has_changed) {
     _has_changed = false;
     return true;
   }
