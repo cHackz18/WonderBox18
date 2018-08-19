@@ -34,16 +34,22 @@ public:
   bool InitialiseButtons();
 
   // Set the pin number of the button denoted by button.
-  SetButtonPin(const Buttons button, const unsigned int pin);
+  void SetButtonPin(const Buttons button, const unsigned int pin);
 
   // Set the Command payload that a button delivers for an action.
-  SetCommandOnAction(const Buttons button, const Action action, const OSCCommand & oscCommand);
+  void SetCommandOnAction(const Buttons button, const Action action, const OSCCommand & oscCommand);
+
+  // Set the OSC enabled device this button controller will output commands to.
+  bool SetDevice(OSCDevice * device);
 
   // Have the button controller act on any button actions.
   bool ProcessButtonPresses();
 
 private:
+  // Handle logic for setting up command buttons as toggles.
   bool HandleCommandButtons();
+
+  // Handle the logic for delivering a command payload.
   bool HandleToggleButtons();
 
 private:

@@ -9,6 +9,11 @@
 
 #include "Arduino.h"
 
+ButtinInit {
+  ReadDown,
+  ReadUp
+};
+
 class Button
 {
   public:
@@ -18,7 +23,7 @@ class Button
     Button();
     bool SetPin(const uint8_t pin);
     // end
-    void Begin();
+    bool Initialise();
     bool Read();
     bool Toggled();
     bool Pressed();
@@ -30,6 +35,7 @@ class Button
     const static bool RELEASED = HIGH;
 
   private:
+    bool initCalled;
     uint8_t  _pin;
     uint16_t _delay;
     bool       _state;
