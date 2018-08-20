@@ -54,7 +54,7 @@ bool SetDevice(OSCDevice * device) {
   if (!device)
     return false;
 
-  
+  m_device = device;
 }
 
 // Have the button controller act on any button actions.
@@ -86,8 +86,8 @@ bool HandleToggleButton() {
 
 // Handle the logic for delivering a command payload.
 bool HandleCommandButton(const CommandButton & commandButton) {
+  if (!m_device)
+    return false;
 
-  
-
-  return true;
+  return device->SendCommand(commandButton.GetCommand()))
 }

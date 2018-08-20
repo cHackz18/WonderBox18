@@ -23,4 +23,5 @@ private:
   Command m_releasedCommand;
   ToggleMode m_mode;
 };
+
 #endif

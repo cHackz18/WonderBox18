@@ -33,7 +33,7 @@ Button::Button()
 bool Button::SetPin(const uint8_t pin) {
 
   // can't change the pin if the button is already initialised and running.
-  if (begin_called)
+  if (initCalled)
     return false;
 
   // can't change the pin to PIN_MAX as that denotes an uninitialised button state.
